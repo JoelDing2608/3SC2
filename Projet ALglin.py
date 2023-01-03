@@ -1,32 +1,28 @@
+from sympy import *
+from sympy import Integral, pprint
 import numpy as np
-import scipy as sc
-test_matx = np.array([[2,12,-3],[1,-6,-3],[2,0,18]])
-
-def deco_qr(A):
+A = Matrix([2, 12, -3, 1, -6, -3, 2, 0, 18]).reshape(3, 3)
+def G(n,i,j,c,s):
+    M = eye(n)
+    M[i,i] = M[j,j] = c
+    M[i,j] = -s
+    M[j,i] = s
+    return M
+def qr_givens(A):
     n = A.shape[0]
-    Q = np.eye(n)
-    
+    R = Matrix(A[:,:])
+    Q = eye(n)
+
     for j in range (n-1):
         for i in range(n-1,j,-1):
-            lign1 = i
-            lign2 = i-1
-            r = np.sqrt(A[lign1,j]**2+A[lign2,j]**2)
-            g = G(n,lign1,lign2,A[lign2,j]/r,A[lign1,j]/r)
-            A = g*A
-            Q = Q*np.transpose(g)
 
-    m = n-1
-    if A[m,m] < 0:
-        A[m,m] = -A[m,m]
-        Q[:,2] = -Q[:,2]
-    print(Q)
-    print(A)
-    print(Q*A)
-
-    return (Q, A)
-def G(n,i,j,c,s):
-    M = np.eye(n)
-    M[i,i] = M[j,j] = c
-    M[i,j],M[j,i] = -s, s
-    return M
-deco_qr(test_matx)
+            l1 = i
+            l2 = i-1
+            r = sqrt(R[l1,j]**2+R[l2,j]**2)
+            g = G(n,l1,l2, R[l2,j]/r,R[l1,j]/r) 
+            R = g*R
+            Q = g.T
+    pprint (Q)
+    pprint(R)
+    return (Q, R)
+qr_givens(A)

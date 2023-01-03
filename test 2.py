@@ -1,6 +1,5 @@
-
 import numpy as np
-test_matx = np.array([[2,12,-3],[1,-6,-3],[2,0,18]])
+mat = np.array([[2,12,-3],[1,-6,-3],[2,0,18]])
 def ResolGivens(A):
     """
     A est une matrice carrée de taille n, inversible
@@ -17,9 +16,7 @@ def ResolGivens(A):
             Q[i][j] = A[i][j]
             R[i][j] = A[i][j]
     for i in range(n):
-        print(i)
         for j in range(i+1, n):
-            print(j)
             c = R[i][i]/np.sqrt(R[i][i]**2 + R[j][i]**2)
             s = R[j][i]/np.sqrt(R[i][i]**2 + R[j][i]**2)
             G = np.zeros((n,n))
@@ -29,8 +26,9 @@ def ResolGivens(A):
             G[i][j] = s
             G[j][i] = -s
             R = np.dot(G, R)
-            print(R)
             Q = np.dot(Q, G.T)
-    print (R)
-    print (Q)
-ResolGivens(test_matx)
+            print(R)
+            print(Q)
+ResolGivens(mat)
+
+
