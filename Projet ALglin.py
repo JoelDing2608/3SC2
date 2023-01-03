@@ -2,7 +2,7 @@ from sympy import *
 from sympy import Integral, pprint
 import numpy as np
 A = Matrix([2, 12, -3, 1, -6, -3, 2, 0, 18]).reshape(3, 3)
-B = Matrix([2, 12, 1, -3, 2, 0]).reshape(3, 2)
+B = Matrix([2, 12, 1, -3, 2, 8]).reshape(3, 2)
 def G(n,i,j,c,s):
     M = eye(n)
     M[i,i] = M[j,j] = c
