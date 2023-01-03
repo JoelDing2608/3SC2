@@ -1,26 +1,36 @@
+
 import numpy as np
 test_matx = np.array([[2,12,-3],[1,-6,-3],[2,0,18]])
-def qr_givens(A):
+def ResolGivens(A):
     """
-    Décompose la matrice A en QR avec la méthode de Givens.
-    Retourne les matrices Q et R.
+    A est une matrice carrée de taille n, inversible
+    b est une matrice de taille (1,n)
+    On cherche a résoudre le système Ax = b avec l'algorithme de Givens
     """
-    n, m = A.shape
-    Q = np.eye(n)
-    for j in range(m):
-        for i in range(n-1, j, -1):
-            G = np.eye(n)
-            r = np.hypot(A[i-1, j], A[i, j])
-            c = A[i-1, j] / r
-            s = A[i, j] / r
-            G[[i-1, i], [i-1, i]] = [c, s]
-            G[[i, i-1], [i-1, i]] = [-s, c]
-            A = G @ A
-            Q = Q @ G.T
-    R = A
-    print(Q)
-    print(R)
-    print(Q@R)
-    return Q, R
-    
-qr_givens(test_matx)
+
+    n = len(A)
+    x = np.zeros(n)
+    R = np.zeros((n,n))
+    Q = np.zeros((n,n))
+    for i in range(n):
+        for j in range(n):
+            Q[i][j] = A[i][j]
+            R[i][j] = A[i][j]
+    for i in range(n):
+        print(i)
+        for j in range(i+1, n):
+            print(j)
+            c = R[i][i]/np.sqrt(R[i][i]**2 + R[j][i]**2)
+            s = R[j][i]/np.sqrt(R[i][i]**2 + R[j][i]**2)
+            G = np.zeros((n,n))
+            np.fill_diagonal(G, 1)
+            G[i][i] = c
+            G[j][j] = c
+            G[i][j] = s
+            G[j][i] = -s
+            R = np.dot(G, R)
+            print(R)
+            Q = np.dot(Q, G.T)
+    print (R)
+    print (Q)
+ResolGivens(test_matx)
