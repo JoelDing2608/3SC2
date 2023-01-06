@@ -32,13 +32,14 @@ def qr_givens(A):
             l1 = i
             l2 = i-1
             r = sqrt(R[l1,j]**2+R[l2,j]**2)
-            g = G(n,l1,l2, R[l2,j]/r,R[l1,j]/r) 
+            g = G(n,l1,l2, R[l2,j]/r,R[l1,j]/r)
+            pprint(g)
 
             #mise  à  jour de R
             R = g*R
             #mise  à  jour de Q
-            Q = g.T
-            pprint(Q)
+            Q = Q*g.T
+            #pprint(Q)
     return (Q, R)
 
 
