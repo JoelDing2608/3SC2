@@ -94,6 +94,5 @@ def ResolGivens2(A,b):
     pprint(x)
     return (x)
 
-qr_givens(B)
-
-
+#ResolGivens(A,t)
+ResolGivens2(A,t)
