@@ -53,9 +53,9 @@ def ResolGivens(A,b):
 
     #résolution de Rx = y
     #pprint(rt)
-    f = linsolve((R,y))
-    pprint(f)
-    return f
+    x = R.inv()*y
+    pprint(x)
+    return x
 
 
 def ResolGivens2(A,b):
@@ -88,11 +88,10 @@ def ResolGivens2(A,b):
     #extraction de b  dans R augmentée
     b_aug = R_aug[:,-1]
     #pprint(R_aug)
-
     #résolution de Rx = b
     x = linsolve((R_aug[:,:-1],b_aug))
     pprint(x)
     return (x)
 
-#ResolGivens(A,t)
-ResolGivens2(A,t)
+ResolGivens(A,t)
+#ResolGivens2(A,t)
