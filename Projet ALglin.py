@@ -24,10 +24,10 @@ def qr_givens(A):
     Q = eye(n)
 
     # boucle pour les colonnes de R augmentée
-    for j in range (m-1):
+    for j in range (n-1):
 
         #boucle pour les lignes de R augmentée
-        for i in range(j+1,n):
+        for i in range(n-1,j,-1):
 
             l1 = i
             l2 = i-1
@@ -36,10 +36,9 @@ def qr_givens(A):
 
             #mise  à  jour de R
             R = g*R
-
             #mise  à  jour de Q
             Q = g.T
-            #pprint(R)
+            pprint(Q)
     return (Q, R)
 
 
@@ -94,6 +93,6 @@ def ResolGivens2(A,b):
     pprint(x)
     return (x)
 
-ResolGivens2(A,t)
-ResolGivens(A,t)
+qr_givens(B)
+
 
