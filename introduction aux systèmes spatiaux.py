@@ -1,13 +1,99 @@
 import numpy as np
 
 #récupération données
-a = input('valur  ')
-b = input()
-c = input()
-d = input() 
-e = input()
-f = input()
-g = input()
-h = input()
+def donnees ():
+    a = float(input('valeur a  '))
+    e = float(input("valeur e"))
+    i = float(input("valeur i "))
+    RT = float(input("valeur RT"))
+    mu = float(input("valeur mu T"))
+    la = float(input("valeur latitude"))
+    lon = float(input("valeur longitude"))
+    omega = float(input("valeur oméga"))
 
-print(a)
+def calcul1(a,e,i,RT,mu,la,lon):
+    ra = a * (1 + e)
+    rp = a * (1 - e)
+    za = ra - RT
+    zp = rp - RT
+    T = 2*np.pi*np.sqrt(a**3 / mu)
+    n = np.sqrt(mu / a**3)
+    Vp = np.sqrt(2*(-mu / (2*a)) + 2*(mu / rp))
+    Va = np.sqrt(2*(-mu / (2*a)) + 2*(mu / ra))
+    vpva = Vp / Va
+    Vc = np.arccos(-e)
+    print(n)
+calcul1(40708,0.8320,61,6378,398600,0,120)
+
+
+def correction (vc,v,):
+    if v <= (-2 * np.pi -vc):
+        if i < 90:
+            c = -3* np.pi
+            u = -1
+        else :
+            c = 3 * np.pi
+            u = -1
+    elif v >= (-2 * np.pi - vc) and v <= (-2*np.pi - vc):
+        if i < 90:
+            c = 2* np.pi
+            u = 1
+        else :
+            c = -2 * np.pi
+            u = 1
+    elif v >= (-2 * np.pi  vc) and v <= (-vc):
+        if i < 90:
+            c = -np.pi
+            u = -1
+        else :
+            c = np.pi
+            u = -1
+
+    elif v >= (-vc) and v <= (vc):
+        if i < 90:
+            c = 0
+            u = 1
+        else :
+            c = 0
+            u = 1
+
+    elif v >= (vc) and v <= (2*np.pi - vc):
+        if i < 90:
+            c = np.pi
+            u = -1
+        else :
+            c = -np.pi
+            u = -1
+
+    elif v >= (2 * np.pi - vc) and v <= (-2*np.pi + vc):
+        if i < 90:
+            c = 2 * np.pi
+            u = 1
+        else :
+            c = -2 * np.pi
+            u = 1
+
+    elif v > (2*np.pi + vc)
+        if i < 90:
+            c = 2 * np.pi
+            u = 1
+        else :
+            c = -2 * np.pi
+            u = 1
+
+    return (c,u)
+def radtodeg(r):
+    r = r * (180 / np.pi)
+    print(r)
+    return r
+
+def degtorad(d):
+    d = d * (np.pi / 180)
+    print(d)
+    return d
+
+def correction2 (omega,v,):
+    if v <= (- omega - 180) and v >= (-omega -90):
+        
+    elif v <= (-omega -90) and v >= (-omega + 90):
+    elif v <= (-omega + 90) and v >= (- omega + 90 +180):
