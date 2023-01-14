@@ -27,6 +27,7 @@ calcul1(40708,0.8320,61,6378,398600,0,120)
 
 
 def correction (vc,v,):
+    v = degtorad(v)
     if v <= (-2 * np.pi -vc):
         if i < 90:
             c = -3* np.pi
@@ -104,8 +105,9 @@ def correction2 (omega,v,):
         c1 = np.pi
         u1 = -1
     return (c1,u1)
-
-def  (c,u,la,i):
+def calcult(a,u,v,e,c,u):
+    
+def  calcullat(c,u,la,i):
     LA = np.arcsin(np.sin(omega+  ))
     L0 = c+u*np.arcsin((np.tan(la)/np.tan(i)))
 
