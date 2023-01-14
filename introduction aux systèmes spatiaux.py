@@ -94,17 +94,18 @@ def degtorad(d):
     return d
 
 def correction2 (omega,v,):
-    if v >= (- omega - 180) and v <= (-omega -90):
+    if v <= (-omega -90):
         c1 = -np.pi
         u1 = -1
     elif v >= (-omega -90) and v <= (-omega + 90):
         c1 = 0
         u1 = 1
-    elif v >= (-omega + 90) and v <= (- omega + 90 +180):
+    elif v >= (-omega + 90):
         c1 = np.pi
         u1 = -1
     return (c1,u1)
 
-def maybe (c,u)
-L0 = c+
+def  (c,u,la,i):
+    LA = np.arcsin(np.sin(omega+  ))
+    L0 = c+u*np.arcsin((np.tan(la)/np.tan(i)))
 
