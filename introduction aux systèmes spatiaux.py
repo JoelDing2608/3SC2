@@ -4,7 +4,7 @@ import numpy as np
 def donnees ():
     a = float(input('valeur a  '))
     e = float(input("valeur e"))
-    i = float(input("valeur i "))
+    i = float(input("valeur i en degrès "))
     RT = float(input("valeur RT"))
     mu = float(input("valeur mu T"))
     la = float(input("valeur latitude"))
@@ -35,14 +35,14 @@ def correction (vc,v,):
         else :
             c = 3 * np.pi
             u = -1
-    elif v >= (-2 * np.pi - vc) and v <= (-2*np.pi - vc):
+    elif v >= (-2 * np.pi - vc) and v <= (-2*np.pi + vc):
         if i < 90:
             c = 2* np.pi
             u = 1
         else :
             c = -2 * np.pi
             u = 1
-    elif v >= (-2 * np.pi  vc) and v <= (-vc):
+    elif v >= (-2 * np.pi + vc) and v <= (-vc):
         if i < 90:
             c = -np.pi
             u = -1
@@ -74,7 +74,7 @@ def correction (vc,v,):
             c = -2 * np.pi
             u = 1
 
-    elif v > (2*np.pi + vc)
+    elif v > (2*np.pi + vc):
         if i < 90:
             c = 2 * np.pi
             u = 1
@@ -105,9 +105,20 @@ def correction2 (omega,v,):
         c1 = np.pi
         u1 = -1
     return (c1,u1)
-def calcult(a,u,v,e,c,u):
+def calcult(a,mu,v,e,c,u,omega):
+    List = [-210, -180, -150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180, 210]
+    v = - degtorad(omega)
+    tp = -(np.sqrt((a**3) / mu) * (c + u * np.arcsin((np.sqrt(1 - e**2) * np.sin(v)) / (1 + e * np.cos(v)))- e * ((np.sqrt(1 - e**2) * np.sin(v)) / (1 + e * np.cos(v)))))
+    print (tp)
+    Tsec = []
+    for j in List : 
+        v = degtorad(j)
+        t = (np.sqrt((a**3) / mu) * (c + u * np.arcsin((np.sqrt(1 - e**2) * np.sin(v)) / (1 + e * np.cos(v)))- e * ((np.sqrt(1 - e**2) * np.sin(v)) / (1 + e * np.cos(v))))) + tp
+        print(t)
+        Tsec.append(t)
     
+
 def  calcullat(c,u,la,i):
-    LA = np.arcsin(np.sin(omega+  ))
+    LA = np.arcsin(np.sin(omega + v) * sin i)
     L0 = c+u*np.arcsin((np.tan(la)/np.tan(i)))
 
