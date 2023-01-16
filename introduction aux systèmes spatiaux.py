@@ -116,9 +116,12 @@ def calcult(a,mu,v,e,c,u,omega):
         t = (np.sqrt((a**3) / mu) * (c + u * np.arcsin((np.sqrt(1 - e**2) * np.sin(v)) / (1 + e * np.cos(v)))- e * ((np.sqrt(1 - e**2) * np.sin(v)) / (1 + e * np.cos(v))))) + tp
         print(t)
         Tsec.append(t)
-    
+    return Tsec
 
-def  calcullat(c,u,la,i):
-    LA = np.arcsin(np.sin(omega + v) * sin i)
+def  calcullat(la,i,lon,t,omega):
+     u = correction2[1]
+     c = correction2[0]
+    LA = np.arcsin(np.sin(omega + v) * np.sin(i)
     L0 = c+u*np.arcsin((np.tan(la)/np.tan(i)))
-
+    LS = lon + L0 - (360 / 86164) * (t)
+    return (LA,L0,LS)
