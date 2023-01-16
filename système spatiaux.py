@@ -11,7 +11,6 @@ def donnees ():
     la = float(input("valeur latitude"))
     lon = float(input("valeur longitude"))
     omega = float(input("valeur oméga"))
-webbrowser.open('https://www.youtube.com/watch?v=jqJAn39umHs')
 
 def calcul1(a,e,i,RT,mu,la,lon):
     ra = a * (1 + e)
