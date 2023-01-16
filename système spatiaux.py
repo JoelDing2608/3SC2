@@ -183,6 +183,6 @@ def resolution ():
 def resolution2 ():
     calcul1(40708,0.8320,61,6378,398600,0,120)
     calcult(40708,398600,0.8320,270,120,61,calcul1(40708,0.8320,61,6378,398600,0,120))
-resolution2()
+resolution()
 
 
